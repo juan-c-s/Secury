@@ -3,54 +3,67 @@ const direccion = document.getElementById('direccion');
 const hora = document.getElementById('hora');
 const tipo = document.getElementById('tipo');
 
+var direcciones = [];
+var map = L.map('map', { scrollWheelZoom: false }).setView([6.201312, -75.565434], 15);
 
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
 
-function updateMap(dataDeLocation){
-
-    mapboxgl.accessToken = 'pk.eyJ1IjoidGVubmlzdG9tbXljYWxsZTEiLCJhIjoiY2tidGswc25lMGFtNDJ2dWxva2xkcWMxcSJ9.9kUmvpjyRpGoLHWhLkNs1w';
-    var map = new mapboxgl.Map({
-    container: 'map',
-    style: 'mapbox://styles/mapbox/streets-v11'
-    }); 
-
-    
+function updateMap(dataDeLocation) {
+    /* aqui va el camello
+    */
+    for (var i = 0; i < direcciones.length; i++) {
+        var marker = new L.marker([direcciones[i][0], locations[i][1]])
+            .addTo(map);
+    }
+    console.log(dataDeLocation);
 }
 
-fetch('/locationData').then((res)=>{
+fetch('/locationData').then((res) => {
 
-    res.json().then((data)=>{
-         updateMap(data)
-         console.log(data)
+    res.json().then((data) => {
+        updateMap(data)
+        console.log(data)
     })
-        
+
 
 
 })
 
+let info;
 
-
-submitform.addEventListener('submit',(e)=>{
+submitform.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    let lonYla = getValueLonandLati()
+    let lonYla = getValueLonandLati(direccion.value);
+    console.log(lonYla);
+    let latitude = lonYla.lat;
+    let longitude = lonYla.lng;
 
     let forInfo = {
-        direccion : direccion.value,
-        hora : hora.value,
-        tipo : tipo.value,
-        latitud : lonYla.longitud,
-        longitud : lonYla.latitud
+        direccion: direccion.value,
+        hora: hora.value,
+        tipo: tipo.value,
+        latitud: latitude,
+        longitud: longitude,
     }
+    console.log(forInfo.latitud);
+    console.log(forInfo.longitud);
+    direcciones.push({
+        latitude,
+        longitude,
+    });
 
-    
 
-    fetch('/informe',{
+
+    fetch('/informe', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
-        body : JSON.stringify(forInfo) 
-    }) 
+        body: JSON.stringify(forInfo)
+    })
 
     direccion.value = "";
     hora.value = "";
@@ -59,10 +72,25 @@ submitform.addEventListener('submit',(e)=>{
 })
 
 
-function getValueLonandLati(){
+function getValueLonandLati(direccion) {
+    var elPoblado = L.latLng(6.201312, -75.565434);
+    var direccionInfo = L.esri.Geocoding.geocode().text(direccion).nearby(elPoblado, 2000);
+    var results = L.layerGroup().addTo(map);
 
-    return {
-        longitud : 5555,
-        latitud : 6666
-    }
+    var info = L.esri.Geocoding.geocode().text(direccion).nearby(elPoblado, 2000).run((err, response) => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log(response)
+        return new Promise((resolve) => {
+            resolve(response);
+        }).then((response) => {
+            return response;
+        })
+
+    })
+
+
 }
+
