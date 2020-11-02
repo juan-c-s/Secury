@@ -2,7 +2,7 @@ const submitform = document.getElementById("submiter");
 const direccion = document.getElementById('direccion');
 const hora = document.getElementById('hora');
 const tipo = document.getElementById('tipo');
-
+var mapInfo = [];
 var direcciones = [];
 var map = L.map('map', { scrollWheelZoom: false }).setView([6.201312, -75.565434], 15);
 
@@ -13,11 +13,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 function updateMap(dataDeLocation) {
     /* aqui va el camello
     */
-    for (var i = 0; i < direcciones.length; i++) {
-        var marker = new L.marker([direcciones[i][0], locations[i][1]])
-            .addTo(map);
-    }
-    console.log(dataDeLocation);
+    var redMarker = L.icon({
+        iconURL: '/templates/views/redMarker.jpg',
+        iconSize: [25, 41],
+    })
+    var marker = new L.marker([6.201312, -75.565434], { icon: redMarker })
+        .addTo(map);
 }
 
 fetch('/locationData').then((res) => {
@@ -36,10 +37,11 @@ let info;
 submitform.addEventListener('submit', (e) => {
     e.preventDefault()
 
-    let lonYla = getValueLonandLati(direccion.value);
-    console.log(lonYla);
-    let latitude = lonYla.lat;
-    let longitude = lonYla.lng;
+    let latYlon = getValueLonandLati(direccion.value);
+
+    let latitude = 3.555;
+    let longitude = 3.555;
+
 
     let forInfo = {
         direccion: direccion.value,
@@ -50,6 +52,7 @@ submitform.addEventListener('submit', (e) => {
     }
     console.log(forInfo.latitud);
     console.log(forInfo.longitud);
+    console.log(forInfo.direccion)
     direcciones.push({
         latitude,
         longitude,
@@ -82,15 +85,15 @@ function getValueLonandLati(direccion) {
             console.log(err);
             return;
         }
+
+        var marker = new L.marker([response.results[0].latlng.lat, response.results[0].latlng.lng]).bindPopup(response.results[0].text)
+            .addTo(map);
+
         console.log(response)
-        return new Promise((resolve) => {
-            resolve(response);
-        }).then((response) => {
-            return response;
-        })
+        return response.results[0];
 
     })
-
+    return info;
 
 }
 

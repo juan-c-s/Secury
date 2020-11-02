@@ -31,48 +31,50 @@
 <body style="background-color: lightblue;">
     <header>
         <div class="title">
-            <h1>Welcome to Secury</h1>
+            <h3>Welcome to Secury</h3>
         </div>
     </header>
 
     <div class="map-wrapper">
         <div id="map"></div>
-        <div class="main-container">
-            <div class="title">
-                <div class="icon">
-                    <i class="fas fa-home"></i>
+        <div class="all-containers">
+            <div class="main-container">
+                <div class="title">
+                    <div class="icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <div class="home-title">
+                        <h4>Home</h4>
+                    </div>
                 </div>
-                <div class="home-title">
-                    <h2>Home</h2>
-                </div>
-            </div>
-            <div class="container-info">
-                <ul>
-                    <li><a href="/">Hacer un Reporte</a></li>
-                    <li><a href="/mapa">Mostrar Mapa</a></li>
-                    <li><a href="">Ver Gráficas</a></li>
+                <div class="container-info">
+                    <ul>
+                        <li><a href="/">Hacer un Reporte</a></li>
+                        <li><a href="/mapa">Mostrar Mapa</a></li>
+                        <li><a href="">Ver Gráficas</a></li>
 
-                </ul>
+                    </ul>
+                </div>
             </div>
-        </div>
-        <div class="report-container">
-            <h2 style="text-align: center;">Reporte</h2>
-            <div class="formulario">
-                <form id="submiter">
-                    <div class="form-item">
-                        <label for="lugar">lugar</label>
-                        <input type="text" id="direccion">
-                    </div>
-                    <div class="form-item">
-                        <label for="hora">Hora</label>
-                        <input type="time" id="hora">
-                    </div>
-                    <div class="form-item">
-                        <label for="tipo-de-robo">Tipo de Robo</label>
-                        <input type="text" id="tipo">
-                    </div>
-                    <button>Enviar</button>
-                </form>
+            <div class="report-container">
+                <h4 style="text-align: center;">Reporte</h4>
+                <div class="formulario">
+                    <form id="submiter">
+                        <div class="form-item">
+                            <label for="lugar">lugar</label>
+                            <input type="text" id="direccion">
+                        </div>
+                        <div class="form-item">
+                            <label for="hora">Hora</label>
+                            <input type="time" id="hora">
+                        </div>
+                        <div class="form-item">
+                            <label for="tipo-de-robo">Tipo de Robo</label>
+                            <input type="text" id="tipo">
+                        </div>
+                        <button>Enviar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

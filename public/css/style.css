@@ -4,12 +4,12 @@ body{
     margin: 0;
     padding: 0;
     height: 100vh;
-    font-size: 30px;
+    font-size: 13px;
 }
 header{
     background-color: #f1f1f1;
     color: #333333;
-    padding: 10px 0 ;
+    padding: 5px 0 ;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -21,17 +21,19 @@ header{
     position: absolute;
     background-color: white;
     border-radius: 25px;
-    padding: 5px;
-    margin: 0 5px 10px 15px;
-    top: 130px;
-    left: 2%;
-    width: 22%;
-    height: 450px;
+    padding-left: 0;
+    margin: 0 5px 10px 0;
+    top: 70px;
+    width: 10%;
+    height: 230px;
+    justify-content: center;
+    align-items: center;
     z-index: 99999;
 }
 .title{
     display: flex;
     flex-direction: row;
+    padding-top: 5px;
 }
 .icon{
     display: flex;
@@ -40,17 +42,19 @@ padding: 7px;
 
 }
 .fas{
-    font-size: 35px;
+    font-size: 15px;
     color: black;
 }
 
 container-info{
     display: flex;
 }
-
+ul{
+    padding-inline-start: 0;
+}
 li{
     list-style-type: none;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
 }
 a{
     text-decoration: none;
@@ -69,43 +73,51 @@ a{
     width: 100%;
     border-radius: 15px;
 }
+.all-containers{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    
+}
 .report-container{
-    border: 1px solid black;
+
+
+  justify-content: center;
     display: flex;
     flex-direction: column;
     position: absolute;
-    left: 30%;
-    top: 10%;
+    left: 11%;
+    top: 70px;
     background: white;
-    height: 500px;
-    width: 50%;
+    height: 230px;
+    width: 18%;
     border-radius: 35px;
     align-items: center;
     z-index: 99999;
+    
 }
 form{
     display: flex;
     flex-direction: column;
-    padding: 20px 120px 20px 0;
     align-items: flex-end;
 }
 .form-item{
     display: flex;
     flex-direction: row;
-    padding-bottom: 50px;
+    padding-bottom: 28px;
 }
 input{
     margin-left: 5px;
     border-radius: 25px;
-    width: 200px;
+    width: 130px;
     outline-style: none;
-    font-size: 25px;
-    padding: 5px;
+    font-size: 10px;
+    padding: 1px 5px 1px 5px;
 }
 button{
-    width: 100px;
-    font-size: 30px;
-    padding: 5px 10px 5px 10px;
+    width: 80px;
+    font-size: 10px;
+    padding: 3px 3px 3px 3px;
     border-radius: 15px;
     text-align: center;
 }
