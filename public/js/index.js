@@ -16,8 +16,9 @@ function updateMap(dataDeLocation) {
     var redMarker = L.icon({
         iconURL: '/templates/views/redMarker.jpg',
         iconSize: [25, 41],
-    })
-    var marker = new L.marker([6.201312, -75.565434], { icon: redMarker })
+    });
+
+    var marker = new L.marker([6.201312, -75.565434])
         .addTo(map);
 }
 
