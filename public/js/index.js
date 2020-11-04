@@ -10,6 +10,12 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
 
+window.onload = ()=>{
+
+    getDataBase()
+
+}
+
 function updateMap(dataDeLocation) {
     /* aqui va el camello
     */
@@ -21,20 +27,6 @@ function updateMap(dataDeLocation) {
     var marker = new L.marker([6.201312, -75.565434])
         .addTo(map);
 }
-
-fetch('/locationData').then((res) => {
-
-    res.json().then((data) => {
-        updateMap(data)
-        console.log(data)
-    })
-
-
-
-})
-
-let info;
-
 submitform.addEventListener('submit', (e) => {
     e.preventDefault()
 
@@ -45,15 +37,13 @@ submitform.addEventListener('submit', (e) => {
 
 
     let forInfo = {
-        direccion: direccion.value,
+        direccion: direccion.value.trim(),
         hora: hora.value,
         tipo: tipo.value,
         latitud: latitude,
         longitud: longitude,
     }
-    console.log(forInfo.latitud);
-    console.log(forInfo.longitud);
-    console.log(forInfo.direccion)
+    
     direcciones.push({
         latitude,
         longitude,
@@ -77,6 +67,7 @@ submitform.addEventListener('submit', (e) => {
 
 
 function getValueLonandLati(direccion) {
+
     var elPoblado = L.latLng(6.201312, -75.565434);
     var direccionInfo = L.esri.Geocoding.geocode().text(direccion).nearby(elPoblado, 2000);
     var results = L.layerGroup().addTo(map);
@@ -90,11 +81,31 @@ function getValueLonandLati(direccion) {
         var marker = new L.marker([response.results[0].latlng.lat, response.results[0].latlng.lng]).bindPopup(response.results[0].text)
             .addTo(map);
 
-        console.log(response)
+
         return response.results[0];
 
     })
     return info;
+
+}
+
+function getDataBase(){
+
+
+
+    fetch('/locationData').then((res) => {
+
+        res.json().then((data) => {
+
+            for(let location of data){
+                 getValueLonandLati(location.direccion)
+
+                
+            }
+        })
+
+    })
+
 
 }
 

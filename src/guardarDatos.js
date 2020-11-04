@@ -1,3 +1,4 @@
+const { Console } = require('console');
 const fs = require('fs');
 
 function getInfo(){
@@ -21,8 +22,25 @@ function setInfo(newData){
 
 }
 
+function organizeByTipo(){
+
+    let data = getInfo()
+    
+    let objeto = {
+        'lesionPersonal' : {},
+        'hurto' : {},
+        
+    }
+
+   
+    
+
+
+}
+
 
 module.exports = {
     getInfo : getInfo,
-    setInfo : setInfo
+    setInfo : setInfo,
+    organize : organizeByTipo
 }

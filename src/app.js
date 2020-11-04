@@ -3,6 +3,7 @@ const hbs = require("hbs");
 const path = require("path");
 const bodyParser = require('body-parser'); 
 const dataBase = require("./guardarDatos")
+const { basename } = require("path");
 
 const viewsPath = path.join(__dirname,"../templates/views");
 const publicPath = path.join(__dirname, '../public')
@@ -15,6 +16,8 @@ app.use(express.static(publicPath))
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 const port = 3002;
+
+dataBase.organize()
 
 
 
@@ -43,6 +46,17 @@ app.post('/informe',(req,res)=>{
     console.log(newinfo)
 
     res.sendStatus(200);
+
+})
+
+app.get('/graficas',(req,res)=>{
+    res.render('graficas')
+})
+
+
+app.get('/dataBaseGrafi',(req,res)=>{
+
+    //send data
 
 })
 

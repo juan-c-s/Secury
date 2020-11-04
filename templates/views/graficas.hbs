@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
         integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -26,18 +27,19 @@
         integrity="sha512-HrFUyCEtIpxZloTgEKKMq4RFYhxjJkCiF5sDxuAokklOeZ68U2NPfh4MFtyIVWlsKtVbK5GD2/JzFyAfvT5ejA=="
         crossorigin=""></script>
 
+
+
 </head>
 
 <body>
 
     <header>
         <div class="title">
-            <h3>Welcome to Secury</h3>
+            <h3>Gráficas</h3>
         </div>
     </header>
 
     <div class="map-wrapper">
-        <div id="map"></div>
         <div class="main-container">
             <div class="title">
                 <div class="icon">
@@ -51,13 +53,19 @@
                 <ul>
                     <li><a href="/">Hacer un Reporte</a></li>
                     <li><a href="/mapa">Mostrar Mapa</a></li>
-                    <li><a href="/graficas">Ver Gráficas</a></li>
+                    <li><a href="">Ver Gráficas</a></li>
 
                 </ul>
-            </div>
+            </div>  
+            
         </div>
+        <div class="graficas">
+               <canvas id="myChart"></canvas>
+               <canvas id="myChart1"></canvas>
+               <canvas id="myChart2"></canvas>
+        </div>  
     </div>
-    <script src="/js/index.js"></script>
+    <script src="/js/indexGraficas.js"></script>
 
 </body>
 
