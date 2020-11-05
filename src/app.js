@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); 
 const port = 3002;
 
-dataBase.organize()
+
 
 
 
@@ -51,12 +51,16 @@ app.post('/informe',(req,res)=>{
 
 app.get('/graficas',(req,res)=>{
     res.render('graficas')
+
+    
+
 })
 
 
 app.get('/dataBaseGrafi',(req,res)=>{
 
-    //send data
+    let data = dataBase.organize();
+    res.send(data)
 
 })
 

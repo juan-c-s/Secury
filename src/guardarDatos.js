@@ -26,11 +26,40 @@ function organizeByTipo(){
 
     let data = getInfo()
     
+    
     let objeto = {
-        'lesionPersonal' : {},
-        'hurto' : {},
+        'lesionPersonal' : [],
+        'hurto' : [],
+        'hurtosArmados' : []
+        
         
     }
+
+    for(let entrada of data){
+
+        let noencontro = true;
+        for(let entradaPeque of objeto[entrada.tipo]){
+
+            if(entrada.direccion == entradaPeque.direccion){
+                entradaPeque.repeticiones++;
+                noencontro = false;
+            }
+
+        }
+
+        if(noencontro){
+            objeto[entrada.tipo].push(  {
+                direccion :  entrada.direccion,
+                repeticiones : 1
+            })
+            
+        }   
+
+    }
+    return objeto
+
+    
+    
 
    
     
