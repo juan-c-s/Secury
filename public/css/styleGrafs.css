@@ -47,6 +47,7 @@ padding: 7px;
 
 container-info{
     display: flex;
+    align-items: flex-end;
 }
 ul{
     padding-inline-start: 0;
@@ -93,6 +94,7 @@ a{
     border-radius: 35px;
     align-items: center;
     z-index: 99999;
+    
     
 }
 form{

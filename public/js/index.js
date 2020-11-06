@@ -99,9 +99,16 @@ function getDataBase(){
 
             for(let location of data){
                  getValueLonandLati(location.direccion)
+               
 
                 
             }
+
+            let radomn = Math.round(Math.random() * ((data.length-1) - 0) + 0)
+
+   
+          
+            alert("Atención - " + data[radomn].tipo + " en " + data[radomn].direccion);
         })
 
     })
